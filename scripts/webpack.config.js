@@ -1,16 +1,16 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    main: './src/index.tsx',
+    main: "./src/index.tsx",
   },
 
   resolve: {
     alias: {
-      config: path.resolve(__dirname, '../src/environments/'),
+      environment: path.resolve(__dirname, "../src/environments/"),
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
 
   module: {
@@ -20,7 +20,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
           },
         ],
       },
@@ -28,16 +28,16 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader',
+            loader: "html-loader",
           },
         ],
       },
       {
         test: /\.svg$/,
-        include: path.resolve(__dirname, '../'),
+        include: path.resolve(__dirname, "../"),
         use: [
           {
-            loader: 'raw-loader',
+            loader: "raw-loader",
             options: {
               esModule: false,
             },
@@ -47,7 +47,7 @@ module.exports = {
       {
         test: /\.(png|jpg?e|gif)$/i,
         use: {
-          loader: 'file-loader',
+          loader: "file-loader",
           options: {
             esModule: false,
           },
@@ -55,32 +55,32 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      filename: './index.html',
+      template: "./public/index.html",
+      filename: "./index.html",
     }),
   ],
 
   optimization: {
-    runtimeChunk: 'single',
+    runtimeChunk: "single",
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
+          name: "vendors",
+          chunks: "all",
         },
       },
     },
   },
-}
+};
